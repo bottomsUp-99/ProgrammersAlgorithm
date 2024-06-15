@@ -1,5 +1,6 @@
+import java.util.Scanner;
+
 public class 홀짝구분하기 {
-    import java.util.Scanner;
 
     public class Solution {
         public static void main(String[] args) {

@@ -1,5 +1,6 @@
+import java.util.Stack;
+
 public class 같은숫자는싫어 {
-    import java.util.*;
 
     public class Solution {
         public int[] solution(int []arr) {
