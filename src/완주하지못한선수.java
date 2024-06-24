@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class 완주하지못한선수 {
 
@@ -11,37 +10,25 @@ public class 완주하지못한선수 {
   }
   public static Object solution(String[] participant, String[] completion){
     String answer = "";
-    HashMap<String, HashSet<Integer>> participantMap = new HashMap<>();
+    HashMap<String, Integer> marathon = new HashMap<>();
 
-    for (String s : participant) {
-      if (!participantMap.containsKey(s)){
-        participantMap.put(s, new HashSet<>());
-        participantMap.get(s).add(0);
+    for (String name : participant) {
+      if (marathon.containsKey(name)){
+        marathon.put(name, marathon.get(name) + 1);
       } else {
-        Integer[] a = participantMap.get(s).toArray(new Integer[0]);
-        int max = -1;
-        for(int num : a){
-          max = Math.max(num, max);
-        }
-        participantMap.get(s).add(max + 1);
+        marathon.put(name, 1);
       }
     }
 
-    for (String s : completion){
-      if (participantMap.get(s).size() > 1){
-        Integer[] a = participantMap.get(s).toArray(new Integer[0]);
-        int max = -1;
-        for(int num : a){
-          max = Math.max(num, max);
-        }
-        participantMap.get(s).remove(max);
+    for (String athlete : completion){
+      if (marathon.get(athlete) == 1) {
+        marathon.remove(athlete);
       } else {
-        participantMap.remove(s);
+        marathon.put(athlete, marathon.get(athlete) - 1);
       }
     }
 
-    answer = participantMap.keySet().toString();
+    answer = (String) marathon.keySet().toArray()[0];
     return answer;
   }
-  //값은 제대로 다 나오는데 런타임에러...;;;
 }
