@@ -44,9 +44,10 @@ public class 가장많이받은선물 {
               willGivenGift[i] += 1;
           }
         }
+        if (answer < willGivenGift[i]){
+          answer = willGivenGift[i];
+        }
       }
-      if (answer < willGivenGift[i])
-        answer = willGivenGift[i];
     }
     return answer;
   }
