@@ -14,40 +14,40 @@ public class 가장많이받은선물 {
     int answer = 0;
     StringTokenizer st;
     int[][] giftMatrix = new int[friends.length][friends.length];
-    int[][] giftScore = new int[friends.length][3];
-    int[] predictGift = new int[friends.length];
+    int[][] giftScore = new int[friends.length][friends.length];
+    int[] willGivenGift = new int[friends.length];
+
     for (String gift : gifts) {
       st = new StringTokenizer(gift);
       String from = st.nextToken();
       String to = st.nextToken();
-      int indexOfTo = Arrays.asList(friends).indexOf(from);
-      int indexOfFrom = Arrays.asList(friends).indexOf(to);
-      giftMatrix[indexOfTo][indexOfFrom] += 1;
-      giftScore[indexOfTo][0] += 1;
-      giftScore[indexOfTo][2] += 1;
-      giftScore[indexOfFrom][1] += 1;
-      giftScore[indexOfFrom][2] -= 1;
+      int indexOfFrom = Arrays.asList(friends).indexOf(from);
+      int indexOfTo = Arrays.asList(friends).indexOf(to);
+      giftMatrix[indexOfFrom][indexOfTo] += 1;
+      giftScore[indexOfFrom][indexOfTo] += 1;
+      giftScore[indexOfTo][indexOfFrom] -= 1;
     }
+
     for (int i = 0; i < friends.length; i++) {
       for (int j = 0; j < friends.length; j++) {
+        if (i == j) continue;
         if (giftMatrix[i][j] > 0) {
           if (giftMatrix[i][j] > giftMatrix[j][i]) {
-            predictGift[i] += 1;
+            willGivenGift[i] += 1;
           } else if (giftMatrix[i][j] == giftMatrix[j][i]) {
-            if (giftScore[i][2] > giftScore[j][2])
-              predictGift[i] += 1;
+            if (giftScore[i][j] > giftScore[j][i])
+              willGivenGift[i] += 1;
           }
-
         } else if (giftMatrix[i][j] == 0) {
           if (giftMatrix[j][i] == 0) {
-            if (giftScore[i][2] > giftScore[j][2])
-              predictGift[i] += 1;
+            if (giftScore[i][j] > giftScore[j][i])
+              willGivenGift[i] += 1;
           }
         }
-        if (answer < predictGift[i])
-          answer = predictGift[i];
       }
+      if (answer < willGivenGift[i])
+        answer = willGivenGift[i];
     }
-    return answer; // 예전 학교 스터디에 한건데 이해가 안감..
+    return answer;
   }
 }
