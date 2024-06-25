@@ -30,7 +30,7 @@ public class 베스트앨범 {
     ArrayList<String> mapToGenres = new ArrayList<>(genreInfo.keySet());//ArrayList 생성해주고 genreInfo의 key 값을 넣어줌
     mapToGenres.sort(((o1, o2) -> genreInfo.get(o2) - genreInfo.get(o1)));//genreInfo의 value 값을 기준으로 내림차순 정렬
     
-    for (String item : mapToGenres){
+    for (String item : mapToGenres){// 이 부분 다시 ㄱㄱ
       ArrayList<movie> movies = new ArrayList<>();
       for (int i = 0; i < genres.length; i++) {
         if (item.equals(genres[i])){
@@ -43,7 +43,7 @@ public class 베스트앨범 {
           if(o1.play == o2.play){
             return o1.index - o2.index;
           }
-          return o2.play - o1.play;
+          return o2.play - o1.play;//얘는 내림차순
         }
       });
       answer.add(movies.get(0).index);
