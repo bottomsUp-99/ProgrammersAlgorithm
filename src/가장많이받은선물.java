@@ -34,7 +34,7 @@ public class 가장많이받은선물 {
         if (giftMatrix[i][j] > 0) {
           if (giftMatrix[i][j] > giftMatrix[j][i]) {
             willGivenGift[i] += 1;
-          } else if (giftMatrix[i][j] == giftMatrix[j][i]) {
+          } else if (giftMatrix[i][j] == giftMatrix[j][i]) {//이게 두번 검증되므로 빡 나는겨
             if (giftScore[i][j] > giftScore[j][i])
               willGivenGift[i] += 1;
           }
@@ -49,6 +49,6 @@ public class 가장많이받은선물 {
         }
       }
     }
-    return answer;
+    return answer/2;
   }
 }
