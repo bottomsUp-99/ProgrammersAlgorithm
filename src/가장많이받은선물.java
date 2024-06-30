@@ -68,6 +68,6 @@ public class 가장많이받은선물 {
         answer = willGivenGift[i];
       }
     }
-    return answer/2;
+    return answer;
   }
 }
