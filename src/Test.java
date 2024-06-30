@@ -1,15 +1,49 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-public class Test {
-
+class Student {
+  private String name;
+  private int score;
+  public Student(String name, int score) {
+    this.name = name;
+    this.score = score;
+  }
+  @Override
+  public String toString() {
+    return name + ": " + score;
+  }
   public static void main(String[] args) {
-    Map<String, Integer> map = new HashMap<>();
-    String[] genres = {"classic", "pop", "classic", "classic", "pop"};
-    int[] plays = {500, 600, 150, 800, 2500};
-    for(int i = 0; i < genres.length; i++) {
-      map.put(genres[i], map.getOrDefault(genres[i], 0) + plays[i]);
+    List<Student> students = new ArrayList<>();
+    students.add(new Student("홍길동", 88));
+    students.add(new Student("김철수", 75));
+    students.add(new Student("이영희", 95));
+
+    // 점수를 기준으로 오름차순 정렬하는 Comparator
+    Comparator<Student> scoreComparator = new Comparator<Student>() {
+      @Override
+      public int compare(Student s1, Student s2) {
+        return Integer.compare(s1.score, s2.score);
+      }
+    };
+
+    Collections.sort(students, scoreComparator);
+    for (Student student : students) {
+      System.out.println(student);
     }
-    System.out.println(map);
+
+    // 이름을 기준으로 오름차순 정렬하는 Comparator
+    Comparator<Student> nameComparator = new Comparator<Student>() {
+      @Override
+      public int compare(Student s1, Student s2) {
+        return s1.name.compareTo(s2.name);
+      }
+    };
+
+    Collections.sort(students, nameComparator);
+    for (Student student : students) {
+      System.out.println(student);
+    }
   }
 }
