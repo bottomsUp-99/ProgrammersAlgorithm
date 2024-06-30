@@ -28,25 +28,44 @@ public class 가장많이받은선물 {
       giftScore[indexOfTo][indexOfFrom] -= 1;
     }
 
+//    for (int i = 0; i < friends.length; i++) {
+//      for (int j = 0; j < friends.length; j++) {
+//        if (i == j) continue;
+//        if (giftMatrix[i][j] > 0) {
+//          if (giftMatrix[i][j] > giftMatrix[j][i]) {
+//            willGivenGift[i] += 1;
+//          } else if (giftMatrix[i][j] == giftMatrix[j][i]) {//이게 두번 검증되므로 빡 나는겨
+//            if (giftScore[i][j] > giftScore[j][i])
+//              willGivenGift[i] += 1;
+//          }
+//        } else if (giftMatrix[i][j] == 0) {
+//          if (giftMatrix[j][i] == 0) {
+//            if (giftScore[i][j] > giftScore[j][i])
+//              willGivenGift[i] += 1;
+//          }
+//        }
+//        if (answer < willGivenGift[i]){
+//          answer = willGivenGift[i];
+//        }
+//      }
+//    }
+
     for (int i = 0; i < friends.length; i++) {
       for (int j = 0; j < friends.length; j++) {
         if (i == j) continue;
-        if (giftMatrix[i][j] > 0) {
-          if (giftMatrix[i][j] > giftMatrix[j][i]) {
+        if (giftMatrix[i][j] > giftMatrix[j][i]) {
+          willGivenGift[i] += 1;
+        } else if (giftMatrix[i][j] == giftMatrix[j][i]) {
+          if (giftScore[i][j] > giftScore[j][i]) {
             willGivenGift[i] += 1;
-          } else if (giftMatrix[i][j] == giftMatrix[j][i]) {//이게 두번 검증되므로 빡 나는겨
-            if (giftScore[i][j] > giftScore[j][i])
-              willGivenGift[i] += 1;
-          }
-        } else if (giftMatrix[i][j] == 0) {
-          if (giftMatrix[j][i] == 0) {
-            if (giftScore[i][j] > giftScore[j][i])
-              willGivenGift[i] += 1;
           }
         }
-        if (answer < willGivenGift[i]){
-          answer = willGivenGift[i];
-        }
+      }
+    }
+
+    for (int i = 0; i < friends.length; i++) {
+      if (answer < willGivenGift[i]) {
+        answer = willGivenGift[i];
       }
     }
     return answer/2;
