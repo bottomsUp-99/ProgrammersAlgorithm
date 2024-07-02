@@ -5,8 +5,7 @@ public class 가장많이받은선물 {
 
   public static void main(String[] args) {
     String[] friends = {"muzi", "ryan", "frodo", "neo"};
-    String[] gifts = {"muzi frodo", "muzi frodo", "ryan muzi", "ryan muzi", "ryan muzi",
-        "frodo muzi", "frodo ryan", "neo muzi"};
+    String[] gifts = {"muzi frodo", "muzi frodo", "ryan muzi", "ryan muzi", "ryan muzi", "frodo muzi", "frodo ryan", "neo muzi"};
     System.out.println(solution(friends, gifts));
   }
 
@@ -14,7 +13,7 @@ public class 가장많이받은선물 {
     int answer = 0;
     StringTokenizer st;
     int[][] giftMatrix = new int[friends.length][friends.length];
-    int[][] giftScore = new int[friends.length][friends.length];
+    int[] giftScore = new int[friends.length];
     int[] willGivenGift = new int[friends.length];
 
     for (String gift : gifts) {
@@ -24,8 +23,8 @@ public class 가장많이받은선물 {
       int indexOfFrom = Arrays.asList(friends).indexOf(from);
       int indexOfTo = Arrays.asList(friends).indexOf(to);
       giftMatrix[indexOfFrom][indexOfTo] += 1;
-      giftScore[indexOfFrom][indexOfTo] += 1;
-      giftScore[indexOfTo][indexOfFrom] -= 1;
+      giftScore[indexOfFrom] += 1;
+      giftScore[indexOfTo] -= 1;
     }
 
 //    for (int i = 0; i < friends.length; i++) {
@@ -49,6 +48,7 @@ public class 가장많이받은선물 {
 //        }
 //      }
 //    }
+//    System.out.println(Arrays.toString(willGivenGift));
 
     for (int i = 0; i < friends.length; i++) {
       for (int j = 0; j < friends.length; j++) {
@@ -56,7 +56,7 @@ public class 가장많이받은선물 {
         if (giftMatrix[i][j] > giftMatrix[j][i]) {
           willGivenGift[i] += 1;
         } else if (giftMatrix[i][j] == giftMatrix[j][i]) {
-          if (giftScore[i][j] > giftScore[j][i]) {
+          if (giftScore[i] > giftScore[j]) {
             willGivenGift[i] += 1;
           }
         }

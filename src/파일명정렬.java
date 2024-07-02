@@ -44,7 +44,7 @@ public class 파일명정렬 {
           tail.append(s.substring(location));
         }
 
-        return new String[]{head.toString().toLowerCase() + number.toString() + tail.toString()};
+        return new String[]{head.toString().toLowerCase(), number.toString(), tail.toString()};
       }
     });
 
