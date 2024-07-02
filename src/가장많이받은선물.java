@@ -10,22 +10,22 @@ public class 가장많이받은선물 {
   }
 
   public static int solution(String[] friends, String[] gifts) {
-    int answer = 0;
-    StringTokenizer st;
-    int[][] giftMatrix = new int[friends.length][friends.length];
-    int[] giftScore = new int[friends.length];
-    int[] willGivenGift = new int[friends.length];
-
-    for (String gift : gifts) {
-      st = new StringTokenizer(gift);
-      String from = st.nextToken();
-      String to = st.nextToken();
-      int indexOfFrom = Arrays.asList(friends).indexOf(from);
-      int indexOfTo = Arrays.asList(friends).indexOf(to);
-      giftMatrix[indexOfFrom][indexOfTo] += 1;
-      giftScore[indexOfFrom] += 1;
-      giftScore[indexOfTo] -= 1;
-    }
+//    int answer = 0;
+//    StringTokenizer st;
+//    int[][] giftMatrix = new int[friends.length][friends.length];
+//    int[] giftScore = new int[friends.length];
+//    int[] willGivenGift = new int[friends.length];
+//
+//    for (String gift : gifts) {
+//      st = new StringTokenizer(gift);
+//      String from = st.nextToken();
+//      String to = st.nextToken();
+//      int indexOfFrom = Arrays.asList(friends).indexOf(from);
+//      int indexOfTo = Arrays.asList(friends).indexOf(to);
+//      giftMatrix[indexOfFrom][indexOfTo] += 1;
+//      giftScore[indexOfFrom] += 1;
+//      giftScore[indexOfTo] -= 1;
+//    }
 
 //    for (int i = 0; i < friends.length; i++) {
 //      for (int j = 0; j < friends.length; j++) {
@@ -50,6 +50,25 @@ public class 가장많이받은선물 {
 //    }
 //    System.out.println(Arrays.toString(willGivenGift));
 
+    //-----------------------------------------------------
+
+    int answer = 0;
+    StringTokenizer st;
+    int[][] giftMatrix = new int[friends.length][friends.length];
+    int[] giftScore = new int[friends.length];
+    int[] willGivenGift = new int[friends.length];
+
+    for (String gift : gifts) {
+      st = new StringTokenizer(gift);
+      String from = st.nextToken();
+      String to = st.nextToken();
+      int indexOfFrom = Arrays.asList(friends).indexOf(from);
+      int indexOfTo = Arrays.asList(friends).indexOf(to);
+      giftMatrix[indexOfFrom][indexOfTo] += 1;
+      giftScore[indexOfFrom] += 1;
+      giftScore[indexOfTo] -= 1;
+    }
+
     for (int i = 0; i < friends.length; i++) {
       for (int j = 0; j < friends.length; j++) {
         if (i == j) continue;
@@ -69,5 +88,6 @@ public class 가장많이받은선물 {
       }
     }
     return answer;
+
   }
 }
