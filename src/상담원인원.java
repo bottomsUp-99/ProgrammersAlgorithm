@@ -23,6 +23,12 @@ public class 상담원인원 {
     for (int i = 0; i < k; i++) {
       waitingList[i] = getTypeWaiting(i + 1, n - k + 1, reqs); // 각 타입에 대해서 멘토 수 별로 대기 시간을 저장.
     }
+    for (int i = 0; i < waitingList.length; i++) {
+      for (int j = 0; j < waitingList[i].length; j++) {
+        System.out.print(waitingList[i][j] +" ");
+      }
+      System.out.println();
+    }
     answer = getMinWaiting(waitingList, 0, n);
     return answer;
   }
@@ -38,7 +44,7 @@ public class 상담원인원 {
         if (req[2] == type) {//타입 별로 ㄱㄱ
           int time = req[0];//예약 시간 추출
           if (endQueue.size() == count) {//신청자와 멘토수가 같은 경우 -> 대기시간 조회
-            int endTime = endQueue.remove();
+            int endTime = endQueue.remove(); // 70
             int delayTime = Math.max(time, endTime);//
             delay += delayTime - time;
           }
