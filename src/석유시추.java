@@ -58,11 +58,11 @@ public class 석유시추 {
       return 0;
     }
 
-    land[height][weight] = oilId;
-    oilLand[height][weight] = oilId;
+    land[height][weight] = oilId;//오일 구역 번호 정해주기
+    oilLand[height][weight] = oilId;//오일 구역 번호 정해주기
     int amountOfOil = 1;
 
-    for (int d = 0; d < 4; d++) {
+    for (int d = 0; d < 4; d++) {//인근에 붙어 있는 배열도 확인해주기
       int nx = height + dx[d];
       int ny = weight + dy[d];
       amountOfOil += dfs(land, oilLand, nx, ny, oilId);
