@@ -29,9 +29,9 @@ public class 석유시추 {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         if (land[i][j] == 1) {//만약 석유가 존재하면~
-          int amount = dfs(land, oilLand, i, j, numOfOilSection);
-          oilStorage.put(numOfOilSection, amount);
-          numOfOilSection++;
+          int amount = dfs(land, oilLand, i, j, numOfOilSection);//석유 양 계산을 위해 깊이 우선 탐색 ㄱㄱ
+          oilStorage.put(numOfOilSection, amount);//계산된 오일의 양을 각 구역 번호에 저장
+          numOfOilSection++;//그 다음에 구역에 저장해주기 위해 번호++
         }
       }
     }
@@ -41,12 +41,12 @@ public class 석유시추 {
     for (int j = 0; j < width; j++) {//각열마다 조회하므로
       Set<Integer> oilSectionSet = new HashSet<>();
       int totalOil = 0;
-      for (int i = 0; i < height; i++) {//오일이 들어있는 구역 번호를 저장.
+      for (int i = 0; i < height; i++) {//시추관이 세로로 들어갈 경우 오일이 들어있는 구역 번호를 저장.
         if (oilLand[i][j] > 1) {
           oilSectionSet.add(oilLand[i][j]);
         }
       }
-      for (int id : oilSectionSet) {
+      for (int id : oilSectionSet) {//구역 별 오일 저장량 저장.
         totalOil += oilStorage.get(id);
       }
       maxOil = Math.max(maxOil, totalOil);
