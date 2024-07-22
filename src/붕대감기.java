@@ -26,7 +26,7 @@ public class 붕대감기 {
           health += bandage[2];
           bandageTime = 0;
         }
-        if (health > maxHealth) health = 30;
+        if (health > maxHealth) health = maxHealth;
       }
     }
     return health;
